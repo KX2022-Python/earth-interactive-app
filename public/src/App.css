@@ -1,0 +1,245 @@
+/* 全局样式 */
+:root {
+  --primary-color: #1a73e8;
+  --secondary-color: #34a853;
+  --background-color: #121212;
+  --panel-background: rgba(30, 30, 30, 0.85);
+  --text-color: #ffffff;
+  --border-color: #444444;
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: var(--background-color);
+  color: var(--text-color);
+  overflow: hidden;
+}
+
+/* App 布局 */
+.app {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  width: 100vw;
+}
+
+.app-header {
+  padding: 1rem;
+  text-align: center;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 10;
+}
+
+.app-header h1 {
+  margin: 0;
+  font-size: 1.8rem;
+}
+
+.app-content {
+  flex: 1;
+  display: flex;
+  position: relative;
+}
+
+.earth-container {
+  flex: 1;
+  position: relative;
+}
+
+.control-container {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  width: 300px;
+  max-height: calc(100vh - 10rem);
+  overflow-y: auto;
+  z-index: 100;
+}
+
+.app-footer {
+  padding: 0.5rem;
+  text-align: center;
+  background-color: rgba(0, 0, 0, 0.5);
+  font-size: 0.8rem;
+}
+
+/* 控制面板样式 */
+.control-panel {
+  background-color: var(--panel-background);
+  border-radius: 8px;
+  padding: 1rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(10px);
+}
+
+.panel-section {
+  margin-bottom: 1.5rem;
+}
+
+.panel-section h3 {
+  margin-top: 0;
+  margin-bottom: 0.8rem;
+  font-size: 1.1rem;
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 0.5rem;
+}
+
+.rotation-button {
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.2s;
+}
+
+.rotation-button:hover {
+  background-color: #1558b7;
+}
+
+.rotation-button.active {
+  background-color: #34a853;
+}
+
+.rotation-button.active:hover {
+  background-color: #2d9249;
+}
+
+.layer-selection {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.select-all-buttons {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.select-all-buttons button {
+  flex: 1;
+  background-color: #444;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 0.3rem;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+.select-all-buttons button:hover {
+  background-color: #555;
+}
+
+.layer-checkbox {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.layer-checkbox input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+}
+
+.layer-checkbox label {
+  cursor: pointer;
+}
+
+.slider-container {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.intensity-slider {
+  flex: 1;
+  height: 6px;
+  -webkit-appearance: none;
+  appearance: none;
+  background: #555;
+  outline: none;
+  border-radius: 3px;
+}
+
+.intensity-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--primary-color);
+  cursor: pointer;
+}
+
+.intensity-slider::-moz-range-thumb {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--primary-color);
+  cursor: pointer;
+  border: none;
+}
+
+.instructions {
+  margin: 0;
+  padding-left: 1.2rem;
+  font-size: 0.9rem;
+}
+
+.instructions li {
+  margin-bottom: 0.3rem;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+  .app-content {
+    flex-direction: column;
+  }
+  
+  .control-container {
+    position: relative;
+    top: auto;
+    right: auto;
+    width: 100%;
+    max-height: none;
+    margin-top: 1rem;
+  }
+  
+  .earth-container {
+    height: 60vh;
+  }
+}
+
+/* 加载动画 */
+.loading {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.loading-spinner {
+  border: 4px solid rgba(255, 255, 255, 0.1);
+  border-left: 4px solid var(--primary-color);
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  animation: spin 1s linear infinite;
+  margin: 0 auto 1rem;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
